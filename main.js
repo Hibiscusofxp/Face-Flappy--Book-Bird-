@@ -1,15 +1,12 @@
-// Initialize Phaser, and creates a 400x490px game
-var game = new Phaser.Game(400, 490, Phaser.AUTO, 'game_div');
-
 // Creates a new 'main' state that wil contain the game
 var main_state = {
 
     preload: function() { 
 		// Function called first to load all the assets
-        this.game.stage.backgroundColor = '#71c5cf';
-        this.game.load.image('bird', 'assets/48px-Facebook_like_thumb.png');
-        this.game.load.image('pipe', 'assets/facebook-icon.png');
-        this.game.load.audio('jump', 'assets/facebook_ping.mp3');
+        // this.game.stage.backgroundColor = '#71c5cf';
+        // this.game.load.image('bird', 'assets/48px-Facebook_like_thumb.png');
+        // this.game.load.image('pipe', 'assets/facebook-icon.png');
+        // this.game.load.audio('jump', 'assets/facebook_ping.mp3');
     },
 
     create: function() { 
@@ -29,7 +26,7 @@ var main_state = {
         this.timer = this.game.time.events.loop(1500, this.add_row_of_pipes, this);     // pass function object no ()!
         // wrong:  this.timer = this.game.events.loop(1500, this.add_row_of_pipes(), this);
 
-        this.score = -1;
+        score = -1;
         var style = { font: "30px Arial", fill: "#ffffff" };
         this.label_score = this.game.add.text(20, 20, "start", style);
     },
@@ -58,7 +55,7 @@ var main_state = {
                 pipe.outOfBoundsKill = true;
             }
         }
-        this.score += 1;
+        score += 1;
         this.label_score.content = this.score;
     },
 
@@ -93,11 +90,8 @@ var main_state = {
 
     restart_game: function() {
         this.game.time.events.remove(this.timer);
-        this.game.state.start('main');
+        this.game.state.start('menu');
     },
 };
 
 
-// Add and start the 'main' state to start the game
-game.state.add('main', main_state);  
-game.state.start('main'); 
