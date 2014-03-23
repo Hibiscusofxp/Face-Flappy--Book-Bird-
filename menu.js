@@ -1,4 +1,4 @@
-var menu_state {
+var menu_state = {
     create: function() {
 
         var space_key = this.game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
